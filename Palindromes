@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Training
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string inputString = "Radar".ToLower();
+            string outputString;
+
+            Program name = new Program();
+            outputString = name.Reverse(inputString).ToLower(); ;
+
+            if(inputString == outputString)
+            {
+                Console.WriteLine($"The word {inputString} is a palindrome");
+            }
+            else
+            {
+                Console.WriteLine($"The word {inputString} is not a palindrome");
+            }
+
+
+
+            Console.ReadLine();
+        }
+
+        public string Reverse(string str)
+        {
+            char[] charArray = str.ToCharArray();
+
+            for (int i = 0, j = str.Length - 1; i < j; i++, j--)
+            {
+                charArray[i] = str[j];
+                charArray[j] = str[i];
+            }
+            str = new string(charArray);
+
+            return str;
+        }
+    }
+}
