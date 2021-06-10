@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Training
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string isogram = "Dermgatoglyphics";
+
+            bool determination = IsIsogram(isogram);
+
+            if(determination == true)
+            {
+                Console.WriteLine($"{isogram} IS an isogram");
+            }
+            else
+            {
+                Console.WriteLine($"{isogram} is NOT an isogram");
+            }
+            
+            Console.ReadLine();
+        }
+
+        public static bool IsIsogram(string str)
+        {
+            if(str == "")
+            {
+                return true;
+            }
+
+            str = str.ToLower();
+            char[] charList = str.ToCharArray();
+
+            for (int i = 0; i < charList.Length-1; i++)
+            {
+                for(int j = i+1; j < charList.Length; j++)
+                {
+                    if (charList[i] == charList[j])
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+}
