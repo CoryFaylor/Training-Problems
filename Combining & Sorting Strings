@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
+Take 2 strings s1 and s2 including only letters from ato z. Return a new sorted string, the longest possible, containing distinct letters - each taken only once - coming from s1 or s2.
+
+Examples:
+a = "xyaabbbccccdefww"
+b = "xxxxyyyyabklmopq"
+longest(a, b) -> "abcdefklmopqwxy"
+
+a = "abcdefghijklmnopqrstuvwxyz"
+longest(a, a) -> "abcdefghijklmnopqrstuvwxyz"
+*/
+
+namespace Training
+{
+    public class TwoToOne
+    {
+        static void Main(string[] args)
+        {
+            string a = "xyaabbbccccdefww";
+            string b = "xxxxyyyyabklmopq";
+
+            string output = Longest(a,b);
+
+            Console.WriteLine($"{output}");
+            Console.ReadLine();
+        }
+
+        public static string Longest(string s1, string s2)
+        {
+            string s3 = s1 + s2;
+            char [] ab = s3.ToCharArray();
+
+            Array.Sort(ab);
+            ab = ab.Distinct().ToArray();
+            string longestString = new string(ab);
+
+            return longestString;
+        }
+
+    }
+}
