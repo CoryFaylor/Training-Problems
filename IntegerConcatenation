@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
+Welcome. In this kata, you are asked to square every digit of a number and concatenate them.
+
+For example, if we run 9119 through the function, 811181 will come out, because 92 is 81 and 12 is 1.
+
+Note: The function accepts an integer and returns an integer
+*/
+
+namespace Training
+{
+    public class IntegerConcatenation
+    {
+        static void Main(string[] args)
+        {
+            int n = 9119;
+            int result = SquareDigits(n);
+
+            Console.WriteLine($"{result}");
+            Console.ReadLine();
+        }
+
+        public static int SquareDigits(int n)
+        {
+            int[] intarray = n.ToString().Select(o => Convert.ToInt32(o) - 48).ToArray();
+            int final = 0;
+
+            for (int i = 0; i < intarray.Length; i++)
+            {
+                intarray[i] = intarray[i] * intarray[i];
+                //intarray[i] = (int)Math.Pow(intarray[i], 2);
+                final = int.Parse(final.ToString() + intarray[i].ToString());
+            }
+
+            return final;
+        }
+    }
+}
