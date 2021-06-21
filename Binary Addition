@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
+Implement a function that adds two numbers together and returns their sum in binary. The conversion can be done before, or after the addition.
+
+The binary number returned should be a string.
+
+Examples:
+
+add_binary(1, 1) == "10" (1 + 1 = 2 in decimal or 10 in binary)
+add_binary(5, 9) == "1110" (5 + 9 = 14 in decimal or 1110 in binary)
+*/
+
+namespace Training
+{
+    public class BinaryAddition
+    {
+        static void Main(string[] args)
+        {
+            int a = 100;
+            int b = 0;
+
+            string binarySum = AddBinary(a,b);
+            Console.WriteLine($"{binarySum}");
+            Console.ReadLine();
+        }
+
+        public static string AddBinary(int a, int b)
+        {
+            int sum = a + b;
+            string binaraySum = "";
+
+            while (sum != 0)
+            {
+                binaraySum = (binaraySum) + (sum % 2).ToString();
+                sum = sum / 2;
+            }
+
+            binaraySum = Reverse(binaraySum);
+            return binaraySum;
+        }
+
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+    }
+}
