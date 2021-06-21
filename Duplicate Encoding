@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
+The goal of this exercise is to convert a string to a new string where each character in the new string is "(" if that character appears only once in the original string, or ")" if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
+
+Examples
+"din"      =>  "((("
+"recede"   =>  "()()()"
+"Success"  =>  ")())())"
+"(( @"     =>  "))((" 
+Notes
+
+Assertion messages may be unclear about what they display in some languages. If you read "...It Should encode XXX", the "XXX" is the expected result, not the input!
+*/
+
+namespace Training
+{
+    public class DuplicateEncoder
+    {
+        static void Main(string[] args)
+        {
+            string s = "vxmv!xyx@R@";
+            string result = DuplicateEncode(s);
+
+            Console.WriteLine($"{result}");
+            Console.ReadLine();
+        }
+
+        public static string DuplicateEncode(string word)
+        {
+            char [] wordList = word.ToLower().ToCharArray();
+            char [] duplicateList = new char[wordList.Length];
+
+            //Loop making a list of duplicates
+            for(int i = 0; i < wordList.Length; i++)
+            {
+                for(int j = 0; j < wordList.Length; j++)
+                {
+                    if(i != j)
+                    {
+                        if (wordList[i] == wordList[j])
+                        {
+                            duplicateList[i] = wordList[i];
+                        }                            
+                    }
+                }
+            }
+
+            //Loop changing the wordlist according to the list of duplicates
+            for (int i = 0; i < wordList.Length; i++)
+            {
+                for(int j = 0; j < wordList.Length; j++)
+                {
+                    if(i != j)
+                    {
+                        if (wordList[i] == duplicateList[j])
+                        {
+                            wordList[i] = ')';
+                        }
+                    }
+                }
+                if(wordList[i] != ')')
+                {
+                    wordList[i] = '(';
+                }
+                else if(wordList[i] == '.')
+                {
+                    wordList[i] = 'X';
+                }
+            }
+
+            string result = new string(wordList);            
+            return result;
+        }
+    }
+}
