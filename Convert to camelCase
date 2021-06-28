@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+/*
+Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case).
+
+Examples
+"the-stealth-warrior" gets converted to "theStealthWarrior"
+"The_Stealth_Warrior" gets converted to "TheStealthWarrior"
+*/
+
+namespace Training
+{
+    public class ConvertToCamelCase
+    {
+        static void Main(string[] args)
+        {
+            string testString = "the-stealth-warrior";
+            string output = ToCamelCase(testString);
+            Console.WriteLine($"{output}");
+            Console.ReadLine();
+        }
+
+        public static string ToCamelCase(string str)
+        {
+            //  1. Split the string into smaller strings on each underscore or dash
+
+            char[] splitters = new char[2] {'-','_'};
+            string[] splitStrings = str.Split(splitters);
+            
+            //  2. Uppercase the first character after the dash/underscore
+
+            for(int i = 1; i < splitStrings.Length; i++)
+            {
+                char[] temp = splitStrings[i].ToCharArray();                
+                temp[0] = char.ToUpper(temp[0]);
+                splitStrings[i] = new string(temp);
+            }
+
+            //  3. Concatenate the strings
+
+            for (int i = 0; i < splitStrings.Length; i++)
+            {
+                str = string.Join("",splitStrings);
+            }
+
+            return str;
+        }
+    }
+}
